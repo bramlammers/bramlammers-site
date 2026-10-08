@@ -1,0 +1,196 @@
+# Pages CMS: wat je via app.pagescms.org kunt aanpassen.
+# Elke opslag wordt een wijziging in GitHub; Cloudflare zet de nieuwe versie daarna vanzelf online.
+
+content:
+  - name: homepage
+    label: Homepage
+    type: file
+    path: src/content/home.json
+    format: json
+    fields:
+      - name: seo
+        label: Zoekmachines
+        type: object
+        fields:
+          - { name: titel, label: Titel in het tabblad en in Google, type: string }
+          - { name: omschrijving, label: Omschrijving in Google, type: text }
+
+      - name: hero
+        label: Bovenaan
+        type: object
+        fields:
+          - { name: bovenregel, label: Bovenregel, type: string }
+          - name: kop
+            label: Kop
+            type: text
+            description: "Zet ==dubbele isgelijktekens== om een stuk tekst heen om het terracotta te maken met een markeerstreep."
+          - { name: tekst, label: Tekst onder de kop, type: text }
+          - { name: knop_kennismaken, label: Knop kennismaken, type: string }
+          - { name: knop_voorproefje, label: Knop voorproefje, type: string }
+          - name: vooruitblik
+            label: Weekraster
+            description: "De vakjes in het raster rechtsboven. Week 1 is volgende week."
+            type: object
+            list: true
+            fields:
+              - name: week
+                label: Week
+                type: select
+                options:
+                  values:
+                    - { name: "1", label: Week 1 }
+                    - { name: "2", label: Week 2 }
+                    - { name: "3", label: Week 3 }
+                    - { name: "4", label: Week 4 }
+              - name: dag
+                label: Dag
+                type: select
+                options:
+                  values:
+                    - { name: ma, label: Maandag }
+                    - { name: di, label: Dinsdag }
+                    - { name: wo, label: Woensdag }
+                    - { name: do, label: Donderdag }
+                    - { name: vr, label: Vrijdag }
+              - { name: tekst, label: Tekst, type: string, description: "Lang woord? Zet een | waar het mag afbreken, zoals Klant|verhaal." }
+              - name: kleur
+                label: Kleur
+                type: select
+                options:
+                  values:
+                    - { name: terra, label: Terracotta }
+                    - { name: inkt, label: Inkt }
+                    - { name: olijf, label: Olijf }
+                    - { name: zand, label: Zand }
+                    - { name: stil, label: "Zand met grijze letters" }
+
+      - name: herkenning
+        label: Herkenning
+        type: object
+        fields:
+          - { name: kop, label: Kop, type: string }
+          - { name: tekst, label: Tekst, type: text }
+
+      - name: werkwijze
+        label: Werkwijze
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: kop, label: Kop, type: string }
+          - { name: intro, label: Inleiding, type: text }
+          - name: stappen
+            label: Stappen
+            type: object
+            list: true
+            fields:
+              - { name: titel, label: Titel, type: string }
+              - name: wie
+                label: Wie doet het
+                type: select
+                options:
+                  values:
+                    - { name: software, label: Software }
+                    - { name: jij, label: Jij }
+              - { name: tekst, label: Tekst, type: text }
+          - { name: noot, label: Noot onder de stappen, type: text }
+
+      - name: aanbod
+        label: Aanbod
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: kop, label: Kop, type: string }
+          - { name: linktekst, label: Linktekst onder elk pakket, type: string }
+          - name: pakketten
+            label: Pakketten
+            type: object
+            list: true
+            fields:
+              - { name: naam, label: Naam, type: string }
+              - { name: prijs, label: Prijs, type: string, description: "Bijvoorbeeld €1.500" }
+              - { name: per, label: Achter de prijs, type: string, description: "Bijvoorbeeld /maand. Leeg laten bij een eenmalige prijs." }
+              - { name: tekst, label: Tekst, type: text }
+          - { name: kleine_letters, label: Kleine letters, type: string }
+
+      - name: voorproefje
+        label: Voorproefje
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: kop, label: Kop, type: string }
+          - { name: tekst, label: Tekst, type: text }
+          - { name: knop, label: Knop, type: string }
+          - { name: bedankt, label: Melding na versturen, type: string }
+
+      - name: maandradar
+        label: Maandradar
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: kop, label: Kop, type: string }
+          - { name: tekst, label: Tekst, type: text }
+          - { name: knop, label: Knop, type: string }
+          - { name: bedankt, label: Melding na aanmelden, type: string }
+          - { name: al_aangemeld, label: Melding als iemand al op de lijst staat, type: string }
+
+      - name: over
+        label: Over
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - name: tekst
+            label: Tekst
+            type: text
+            description: "Zet ==dubbele isgelijktekens== om een woord voor een markeerstreep."
+
+      - name: vragen
+        label: Vragen
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: kop, label: Kop, type: string }
+          - name: items
+            label: Vragen
+            type: object
+            list: true
+            fields:
+              - { name: vraag, label: Vraag, type: string }
+              - { name: antwoord, label: Antwoord, type: text }
+
+      - name: kennismaken
+        label: Kennismaken
+        type: object
+        fields:
+          - { name: label, label: Label, type: string }
+          - { name: kop, label: Kop, type: string }
+          - { name: tekst, label: Tekst, type: text }
+          - { name: knop, label: Knop, type: string }
+
+  - name: instellingen
+    label: Instellingen
+    type: file
+    path: src/content/instellingen.json
+    format: json
+    fields:
+      - name: voorbeeldbalk
+        label: Voorbeeldbalk tonen
+        type: boolean
+        description: "Aan: bovenaan staat 'Voorbeeldversie' en Google slaat de site over. Zet hem uit bij de livegang."
+      - { name: web3forms_sleutel, label: Web3Forms access key, type: string, description: "Voor het voorproefje-formulier. Te vinden in je Web3Forms-mail." }
+      - { name: agenda_link, label: Link naar je agenda, type: string, description: "Bijvoorbeeld je Cal.com-link voor een kennismaking." }
+      - { name: email, label: E-mailadres, type: string }
+      - { name: linkedin, label: LinkedIn-link, type: string }
+      - { name: kvk, label: KVK-nummer, type: string }
+
+  - name: privacy
+    label: Privacyverklaring
+    type: file
+    path: src/content/privacy.md
+    format: yaml-frontmatter
+    fields:
+      - { name: title, label: Titel, type: string }
+      - { name: bijgewerkt, label: Bijgewerkt op, type: string }
+      - name: body
+        label: Tekst
+        type: text
+        description: "Markdown: ## voor een tussenkop, - voor een opsomming, **vet** voor vet. {{email}} en {{kvk}} worden vanzelf ingevuld."
