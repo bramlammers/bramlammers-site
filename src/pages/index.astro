@@ -1,0 +1,205 @@
+---
+import Base from '../layouts/Base.astro';
+import home from '../content/home.json';
+import instellingen from '../content/instellingen.json';
+
+const { hero, herkenning, werkwijze, aanbod, voorproefje, maandradar, over, vragen, kennismaken } = home;
+
+// ==tekst== in de CMS-velden wordt een accent (kop) of markeerstreep (over)
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const accent = (s: string) => esc(s).replace(/==(.+?)==/g, '<span class="accent" id="accent">$1</span>');
+let markIndex = 0;
+const marker = (s: string) =>
+  esc(s).replace(/==(.+?)==/g, (_m, w) => `<mark class="hl" style="--d:${(0.7 + 0.4 * markIndex++).toFixed(1)}s">${w}</mark>`);
+
+const dagen = ['ma', 'di', 'wo', 'do', 'vr'];
+const kleur: Record<string, string> = { terra: 'chip--terra', inkt: 'chip--ink', olijf: 'chip--olive', zand: 'chip--soft', stil: 'chip--quiet' };
+const cel = (w: number, d: string) => hero.vooruitblik.find((v) => Number(v.week) === w && v.dag === d);
+// een | in de tekst is een plek waar het woord mag afbreken
+const afbreek = (s: string) => s.replaceAll('|', '\u00AD');
+const plaatsen = hero.vooruitblik.map((v) => v.tekst.replaceAll('|', '').toLowerCase()).join(', ');
+
+const pad = (n: number) => String(n).padStart(2, '0');
+const nu = new Date();
+const stempeldatum = `${pad(nu.getDate())} · ${pad(nu.getMonth() + 1)} · ${nu.getFullYear()}`;
+
+const w3f = instellingen.web3forms_sleutel?.trim();
+const agenda = instellingen.agenda_link?.trim();
+const site = 'https://bramlammers.nl';
+---
+<Base titel={home.seo.titel} omschrijving={home.seo.omschrijving} thuis>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="label" id="kicker" data-h>{hero.bovenregel}</p>
+        <h1 id="h1" data-h set:html={accent(hero.kop)} />
+        <p class="lead" id="lead" data-h>{hero.tekst}</p>
+        <div class="actions">
+          <a class="btn" href="#kennismaken" data-h>{hero.knop_kennismaken}</a>
+          <a class="btn btn--line" href="#voorproefje" data-h>{hero.knop_voorproefje}</a>
+        </div>
+      </div>
+
+      <div class="cal-stage">
+        <figure class="cal" id="cal" data-h>
+          <figcaption class="sr-only">Voorbeeld van een vooruitblik op vier weken: {plaatsen}. Afgestempeld met akkoord.</figcaption>
+          <div class="cal-head" aria-hidden="true"><span>Vooruitblik</span><span id="cal-range">week 1 – 4</span></div>
+          <div class="cal-grid" aria-hidden="true">
+            <div class="day"></div>
+            {dagen.map((d) => <div class="day">{d}</div>)}
+            {[1, 2, 3, 4].map((w) => (
+              <>
+                <div class="wk" data-w={w}>wk {w}</div>
+                {dagen.map((d) => {
+                  const v = cel(w, d);
+                  return v ? <div><span class={`chip ${kleur[v.kleur] ?? 'chip--soft'}`} data-h>{afbreek(v.tekst)}</span></div> : <div></div>;
+                })}
+              </>
+            ))}
+          </div>
+          <div class="stamp" id="stamp" aria-hidden="true" data-h><span class="ring" id="ring"></span><b>AKKOORD</b><small id="stamp-date">{stempeldatum}</small></div>
+          <span class="hint" aria-hidden="true">Klik om af te stempelen</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section recog" id="herkenning" aria-labelledby="recog-h">
+    <div class="wrap">
+      <div class="recog-grid" data-group>
+        <span class="rule" data-r="line" aria-hidden="true"></span>
+        <h2 class="h2" id="recog-h" data-r>{herkenning.kop}</h2>
+        <p class="recog-text" data-r style="--d:.12s">{herkenning.tekst}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="werkwijze" aria-labelledby="ww-h">
+    <div class="wrap">
+      <div class="sec-head" data-group>
+        <p class="label" data-r="type">{werkwijze.label}</p>
+        <h2 class="h2" id="ww-h" data-r style="--d:.1s">{werkwijze.kop}</h2>
+        <p class="lead" data-r style="--d:.2s">{werkwijze.intro}</p>
+      </div>
+      <ol class="steps" id="steps" data-group>
+        {werkwijze.stappen.map((s, i) => (
+          <li class="step">
+            <div class="step-mark" aria-hidden="true"><i class={s.wie === 'jij' ? 'human' : undefined} data-r="dot"></i><span data-r="line"></span></div>
+            <p class="label" data-r>Stap {pad(i + 1)} <span>· {s.wie}</span></p>
+            <h3 data-r>{s.titel}</h3>
+            <p data-r>{s.tekst}</p>
+          </li>
+        ))}
+      </ol>
+      <p class="note" data-group><span class="rule" data-r="line" aria-hidden="true"></span><span data-r style="display:block">{werkwijze.noot}</span></p>
+    </div>
+  </section>
+
+  <section class="section" id="aanbod" aria-labelledby="ab-h">
+    <div class="wrap">
+      <div class="sec-head" data-group>
+        <p class="label" data-r="type">{aanbod.label}</p>
+        <h2 class="h2" id="ab-h" data-r style="--d:.1s">{aanbod.kop}</h2>
+      </div>
+      <div class="offers" id="offers" data-group>
+        {aanbod.pakketten.map((p) => (
+          <article class="offer" data-r>
+            <span class="tag" data-r="tag">{p.naam}</span>
+            <p class="price">{p.prijs}{p.per && <small>{p.per}</small>}</p>
+            <p>{p.tekst}</p>
+            <a class="more" href="#kennismaken">{aanbod.linktekst} <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+      <p class="fine">{aanbod.kleine_letters}</p>
+    </div>
+  </section>
+
+  <section class="section taste" id="voorproefje" aria-labelledby="vp-h">
+    <div class="wrap" data-group>
+      <div class="taste-card" data-r>
+        <div class="sec-head" style="margin-bottom:0">
+          <p class="label" data-r="type" style="--d:.2s">{voorproefje.label}</p>
+          <h2 class="h2" id="vp-h">{voorproefje.kop}</h2>
+          <p class="lead">{voorproefje.tekst}</p>
+        </div>
+        <form class="taste-form" id="taste-form" method="post" action={w3f ? 'https://api.web3forms.com/submit' : '#voorproefje'}
+          data-key={w3f || undefined} data-thanks={voorproefje.bedankt} data-mail={instellingen.email || undefined} novalidate>
+          {w3f && <>
+            <input type="hidden" name="access_key" value={w3f} />
+            <input type="hidden" name="subject" value="Voorproefje aangevraagd via bramlammers.nl" />
+            <input type="hidden" name="from_name" value="bramlammers.nl" />
+            <input type="hidden" name="redirect" value={`${site}/bedankt`} />
+          </>}
+          <label class="hp" aria-hidden="true">Laat dit leeg <input type="checkbox" name="botcheck" tabindex="-1" /></label>
+          <div class="field"><label for="vp-naam">Naam</label><input type="text" id="vp-naam" name="naam" autocomplete="name" /></div>
+          <div class="field"><label for="vp-bedrijf">Bedrijf</label><input type="text" id="vp-bedrijf" name="bedrijf" autocomplete="organization" /></div>
+          <div class="field wide"><label for="vp-mail">E-mail</label><input type="email" id="vp-mail" name="email" autocomplete="email" placeholder="je@bedrijf.nl" required /></div>
+          <button class="btn" type="submit" id="vp-submit">{voorproefje.knop}</button>
+          <p class="form-note wide" role="status" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="maandradar" aria-labelledby="rd-h">
+    <div class="wrap" data-group>
+      <div class="band-text">
+        <p class="label" data-r="type">{maandradar.label}</p>
+        <h2 class="h2" id="rd-h" data-r style="--d:.1s">{maandradar.kop}</h2>
+        <p class="lead" data-r style="--d:.2s">{maandradar.tekst}</p>
+        <form class="signup" id="radar-form" method="post" action="/api/maandradar" novalidate data-r style="--d:.3s"
+          data-thanks={maandradar.bedankt} data-exists={maandradar.al_aangemeld} data-mail={instellingen.email || undefined}>
+          <label class="sr-only" for="rd-mail">E-mailadres</label>
+          <input type="email" id="rd-mail" name="email" autocomplete="email" placeholder="je@bedrijf.nl" required />
+          <button class="btn" type="submit" id="rd-submit">{maandradar.knop}</button>
+        </form>
+        <p class="form-note" id="rd-note" role="status" hidden></p>
+      </div>
+      <div class="grid-art" id="grid-art" aria-hidden="true">
+        {['', 'p', '', '', '', '', '', '', 'o', '', 'p', '', '', '', 'k', '', '', 'p', '', ''].map((c) => <i class={c || undefined} data-r="dot"></i>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section about" id="over" aria-labelledby="over-h" style="padding-top: var(--section)">
+    <div class="wrap" data-group>
+      <p class="label" id="over-h" data-r="type">{over.label}</p>
+      <p class="statement" data-r style="--d:.1s" set:html={marker(over.tekst)} />
+    </div>
+  </section>
+
+  <section class="section" id="vragen" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="sec-head" data-group>
+        <p class="label" data-r="type">{vragen.label}</p>
+        <h2 class="h2" id="faq-h" data-r style="--d:.1s">{vragen.kop}</h2>
+      </div>
+      <dl class="faq" data-group>
+        {vragen.items.map((q) => (
+          <div>
+            <span class="rule" data-r="line" aria-hidden="true"></span>
+            <dt data-r>{q.vraag}</dt>
+            <dd data-r>{q.antwoord}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="close" id="kennismaken" aria-labelledby="km-h">
+    <div class="wrap" data-group>
+      <div class="close-text">
+        <p class="label" data-r="type">{kennismaken.label}</p>
+        <h2 class="h2" id="km-h" data-r style="--d:.1s">{kennismaken.kop}</h2>
+        <p class="lead" data-r style="--d:.2s">{kennismaken.tekst}</p>
+      </div>
+      <div class="close-act" data-r style="--d:.3s">
+        {agenda
+          ? <a class="btn btn--paper" href={agenda} target="_blank" rel="noopener">{kennismaken.knop}</a>
+          : <button class="btn btn--paper" type="button" id="km-btn">{kennismaken.knop}</button>}
+        <p class="form-note" id="km-note" role="status" hidden></p>
+      </div>
+    </div>
+  </section>
+</Base>

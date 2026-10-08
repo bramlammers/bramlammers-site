@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import * as privacy from '../content/privacy.md';
+import instellingen from '../content/instellingen.json';
+
+const email = instellingen.email?.trim();
+const kvk = instellingen.kvk?.trim();
+const html = (await privacy.compiledContent())
+  .replaceAll('{{email}}', email ? `<a href="mailto:${email}">${email}</a>` : '[e-mailadres]')
+  .replaceAll('{{kvk}}', kvk || '[nummer volgt]');
+const { title, bijgewerkt } = privacy.frontmatter;
+---
+<Base titel={`${title} · Bram Lammers`} omschrijving="Welke gegevens Bram Lammers verwerkt, waarom en wat je rechten zijn.">
+  <section class="page">
+    <div class="wrap">
+      <p class="label">Privacy</p>
+      <h1 class="h2">{title}</h1>
+      <div class="prose" set:html={html} />
+      {bijgewerkt && <p class="page-meta">Bijgewerkt op {bijgewerkt}</p>}
+    </div>
+  </section>
+</Base>

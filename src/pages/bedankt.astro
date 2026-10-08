@@ -1,0 +1,15 @@
+---
+// Hier komt iemand uit als het voorproefje-formulier zonder JavaScript wordt verstuurd.
+import Base from '../layouts/Base.astro';
+import home from '../content/home.json';
+---
+<Base titel="Dank je · Bram Lammers">
+  <section class="page">
+    <div class="wrap">
+      <p class="label">Voorproefje</p>
+      <h1 class="h2">Dank je, ik heb je aanvraag.</h1>
+      <p class="lead">{home.voorproefje.bedankt}</p>
+      <p><a class="btn btn--line" href="/">Terug naar de homepage</a></p>
+    </div>
+  </section>
+</Base>

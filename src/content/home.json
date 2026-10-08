@@ -1,0 +1,83 @@
+{
+  "seo": {
+    "titel": "Bram Lammers · werkplaats voor sociale media",
+    "omschrijving": "Ik richt voor marketeers een werkwijze voor sociale media in: software kijkt vier weken vooruit, schrijft alvast en loopt de feiten na, een mens beslist wat er online gaat."
+  },
+  "hero": {
+    "bovenregel": "Werkplaats voor sociale media",
+    "kop": "Vijf jaar lang schreef ik berichten op ==’t laatste nippertje==. Daar heb ik iets op gevonden.",
+    "tekst": "Ik werkte voor kleine zaken en voor groepen met tientallen bedrijven onder één dak. Overal zag ik hetzelfde: de verhalen waren er wel, alleen de tijd om ze te vertellen ontbrak. Dus bouwde ik een werkwijze waarin software vier weken vooruitkijkt, alvast schrijft in de toon van het merk en elk feit naloopt, terwijl een mens beslist wat er de deur uitgaat. Die werkwijze richt ik nu bij jou in.",
+    "knop_kennismaken": "Even kennismaken",
+    "knop_voorproefje": "Stuur me ’n voorproefje",
+    "vooruitblik": [
+      { "week": "1", "dag": "di", "tekst": "Jubileum", "kleur": "terra" },
+      { "week": "2", "dag": "ma", "tekst": "Werk|middag", "kleur": "inkt" },
+      { "week": "2", "dag": "do", "tekst": "Klant|verhaal", "kleur": "olijf" },
+      { "week": "3", "dag": "ma", "tekst": "Vacature", "kleur": "zand" },
+      { "week": "3", "dag": "vr", "tekst": "Inhaker", "kleur": "terra" },
+      { "week": "4", "dag": "wo", "tekst": "Stil houden", "kleur": "stil" }
+    ]
+  },
+  "herkenning": {
+    "kop": "Je was ’t echt van plan.",
+    "tekst": "Elke week zou er iets moois online komen, over de collega die al vijfentwintig jaar het magazijn bestiert of over de klant die zo blij was met z’n nieuwe machine. Alleen kwam er steeds iets tussen, meestal in de vorm van een vergaderverzoek. Voor je ’t wist was ’t vrijdagmiddag en ging er gauw een vacature online, omdat er toch íets moest. Zo gaat ’t bij de meeste marketeers in middelgrote bedrijven: tien klussen, één paar handen en sociale media als de klus die ’t makkelijkst kan wachten."
+  },
+  "werkwijze": {
+    "label": "Werkwijze",
+    "kop": "Elke week dezelfde vijf handelingen",
+    "intro": "In een goede werkplaats heeft elk stuk gereedschap z’n vaste plek en weet iedereen wat er na wat komt. Da’s hier niet anders: de software doet het voorwerk, jij kiest, schaaft bij en geeft akkoord.",
+    "stappen": [
+      { "titel": "Vooruitkijken", "wie": "software", "tekst": "Elke week kijkt de software vier weken vooruit: welke momenten eraan komen, waar de planning gaten vertoont en op welke dagen je beter even niets zegt." },
+      { "titel": "Schrijven", "wie": "software", "tekst": "Per bericht liggen er drie invalshoeken klaar, per kanaal uitgeschreven en met jullie stijlboek ernaast, zodat je nooit meer naar een leeg vel hoeft te staren." },
+      { "titel": "Nalopen", "wie": "software", "tekst": "Voordat er een mens meeleest, legt de software elke naam, elk cijfer en elke datum naast de bron, want een verkeerd gespelde achternaam vergeeft niemand je." },
+      { "titel": "Bijschaven", "wie": "jij", "tekst": "Jij kiest de invalshoek die ’t best past en schaaft bij waar dat nodig is. Meestal gaat het om een woord of twee." },
+      { "titel": "Akkoord", "wie": "jij", "tekst": "Er gaat niets online voordat jij of een collega het gelezen en goedgekeurd heeft." }
+    ],
+    "noot": "Wie wat goedkeurt, spreken we vooraf af. We bewaren elk akkoord, zodat je achteraf altijd kunt laten zien wie een bericht heeft gelezen."
+  },
+  "aanbod": {
+    "label": "Aanbod",
+    "kop": "Waar je mee begint",
+    "linktekst": "Vraag ernaar",
+    "pakketten": [
+      { "naam": "Werkmiddag", "prijs": "€1.500", "per": "", "tekst": "We zitten een middag met je team aan tafel. Aan het eind liggen er een stijlboek, een vooruitblik op de komende maand en ’t eerste bericht dat op de nieuwe manier is gemaakt." },
+      { "naam": "Werkplaats inrichten", "prijs": "€3.950", "per": "", "tekst": "Ik richt de hele werkwijze in met het gereedschap dat jullie al hebben: een planning met vaste akkoordmomenten, de wekelijkse vooruitblik, het schrijven en het nalopen. Daarna volgen twee trainingen en een maand waarin ik meekijk tot alles vanzelf gaat." },
+      { "naam": "Vast onderhoud", "prijs": "€495", "per": "/maand", "tekst": "Elke maand krijg je een vooruitblik op de vier weken die komen, groeit het stijlboek mee met jullie kanttekeningen en zitten we eens per kwartaal samen om te kijken wat werkte. Je kunt per kwartaal opzeggen." }
+    ],
+    "kleine_letters": "Alle prijzen zijn exclusief btw."
+  },
+  "voorproefje": {
+    "label": "Gratis voorproefje",
+    "kop": "Eerst proeven?",
+    "tekst": "Stuur me de naam van je bedrijf, dan krijg je binnen een week een vooruitblik op jullie komende vier weken: drie momenten om op in te haken en drie berichten die daar mooi bij zouden passen. Er hangt geen prijskaartje aan en ook geen verplichting.",
+    "knop": "Stuur me ’n voorproefje",
+    "bedankt": "Dank je. Binnen een week ligt je vooruitblik in je mail."
+  },
+  "maandradar": {
+    "label": "Gratis, eens per maand",
+    "kop": "De maandradar",
+    "tekst": "Aan het begin van elke maand staat er een overzicht in je mail dat je in vijf minuten uit hebt: de momenten uit de komende vier weken waarop je kunt inhaken, met erbij wat daar werkt en wat je beter kunt laten liggen.",
+    "knop": "Zet me op de lijst",
+    "bedankt": "Bijna klaar: in je mail staat een link om je aanmelding te bevestigen.",
+    "al_aangemeld": "Je staat al op de lijst. De volgende maandradar komt vanzelf."
+  },
+  "over": {
+    "label": "Over",
+    "tekst": "Ik ben Bram Lammers. Al vijf jaar werk ik met sociale media, voor de zaak om de hoek en voor internationale groepen met tientallen bedrijven onder één dak. Ik hou van een zin die ==klopt==, van een planning die ==klopt== en van het moment waarop iemand z’n vrijdagmiddag terugkrijgt."
+  },
+  "vragen": {
+    "label": "Vragen",
+    "kop": "Wat mensen vaak willen weten",
+    "items": [
+      { "vraag": "Heb ik dan nog wel een marketeer nodig?", "antwoord": "Ja, want iemand moet kiezen, bijschaven en akkoord geven. De werkwijze maakt dat werk lichter. Komt er later een collega bij, dan kan die vanaf de eerste dag meedraaien." },
+      { "vraag": "Welk gereedschap heb ik nodig?", "antwoord": "Meestal gewoon wat je al hebt: de planning draait in Google Sheets of Notion en de software werkt met jullie eigen AI-abonnement, zodat je niets nieuws hoeft aan te schaffen." },
+      { "vraag": "Plaats jij de berichten ook?", "antwoord": "Dat doen jullie zelf, zodat het laatste woord blijft bij de mensen die het bedrijf het best kennen." }
+    ]
+  },
+  "kennismaken": {
+    "label": "Kennismaken",
+    "kop": "Zullen we even kennismaken?",
+    "tekst": "Zo’n eerste gesprek duurt een halfuur, bij de koffie of via een scherm. We hebben ’t over hoe het nu bij jullie loopt, je hoeft niets voor te bereiden en je zit daarna nergens aan vast.",
+    "knop": "Kies een moment"
+  }
+}
